@@ -34,16 +34,6 @@ function App() {
               required
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              placeholder="Enter your email"
-              required
-            />
-          </div>
           <button type="submit" className="submit-btn">Submit</button>
         </form>
       </div>
