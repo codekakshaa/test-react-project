@@ -5,8 +5,9 @@ function App() {
     e.preventDefault();
     const name = e.target.elements.name.value;
     const phone = e.target.elements.phone.value;
+    const dob = e.target.elements.dob.value;
     const email = e.target.elements.email.value;
-    alert(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
+    alert(`Name: ${name}, Phone: ${phone}, Date of Birth: ${dob}, Email: ${email}`);
   };
 
   return (
@@ -34,7 +35,16 @@ function App() {
               required
             />
           </div>
-          {/* <div className="form-group">
+          <div className="form-group">
+            <label htmlFor="dob">Date of Birth:</label>
+            <input 
+              type="date" 
+              id="dob" 
+              name="dob" 
+              required
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input 
               type="email" 
@@ -43,7 +53,7 @@ function App() {
               placeholder="Enter your email"
               required
             />
-          </div> */}
+          </div>
           <button type="submit" className="submit-btn">Submit</button>
         </form>
       </div>
