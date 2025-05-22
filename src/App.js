@@ -6,8 +6,11 @@ function App() {
     name: '',
     phone: '',
     dob: '',
-    email: ''
+    email: '',
+    password: ''
   });
+  
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,6 +18,10 @@ function App() {
       ...prevData,
       [name]: value
     }));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e) => {
@@ -73,6 +80,26 @@ function App() {
               placeholder="Enter your email"
               required
             />
+          </div>
+          <div className="form-group password-field">
+            <label htmlFor="password">Password</label>
+            <div className="password-input-container">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                id="password" 
+                name="password" 
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+              />
+              <span 
+                className="password-toggle" 
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? "👁️" : "👁️‍🗨️"}
+              </span>
+            </div>
           </div>
           <button type="submit" className="submit-btn">Submit</button>
         </form>
