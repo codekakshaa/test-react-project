@@ -4,8 +4,9 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.elements.name.value;
+    const phone = e.target.elements.phone.value;
     const email = e.target.elements.email.value;
-    alert(`Name: ${name}, Email: ${email}`);
+    alert(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
   };
 
   return (
@@ -20,6 +21,16 @@ function App() {
               id="name" 
               name="name" 
               placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number:</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              placeholder="Enter your phone number"
               required
             />
           </div>
