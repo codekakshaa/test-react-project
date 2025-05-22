@@ -25,7 +25,6 @@ function processUserData(userData) {
   result = result;
   
   // Missing return statement (ESLint warning)
-  // Unreachable code (ESLint error)
 }
 
 function App() {
