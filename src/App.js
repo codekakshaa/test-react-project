@@ -34,7 +34,7 @@ function App() {
               required
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input 
               type="email" 
@@ -43,7 +43,7 @@ function App() {
               placeholder="Enter your email"
               required
             />
-          </div>
+          </div> */}
           <button type="submit" className="submit-btn">Submit</button>
         </form>
       </div>
