@@ -6,9 +6,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1>Welcome to My React App!</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          This is a sample UI change to demonstrate React capabilities.
         </p>
+        <button 
+          className="App-button"
+          onClick={() => alert('Button clicked!')}
+        >
+          Click Me!
+        </button>
         <a
           className="App-link"
           href="https://reactjs.org"
