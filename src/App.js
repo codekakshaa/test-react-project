@@ -1,30 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.elements.name.value;
+    const email = e.target.elements.email.value;
+    alert(`Name: ${name}, Email: ${email}`);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome to My React App!</h1>
-        <p>
-          This is a sample UI change to demonstrate React capabilities.
-        </p>
-        <button 
-          className="App-button"
-          onClick={() => alert('Button clicked!')}
-        >
-          Click Me!
-        </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="form-container">
+        <h2>Contact Form</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <button type="submit" className="submit-btn">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
