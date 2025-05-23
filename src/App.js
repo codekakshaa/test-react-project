@@ -31,79 +31,99 @@ function App() {
 
   return (
     <div className="App">
-      <div className="form-container">
-        <h2>Contact Form</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="name" 
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              name="phone" 
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="dob">Date of Birth</label>
-            <input 
-              type="date" 
-              id="dob" 
-              name="dob" 
-              value={formData.dob}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div className="form-group password-field">
-            <label htmlFor="password">Password</label>
-            <div className="password-input-container">
+      <header className="app-header">
+        <div className="header-content">
+          <h1>User Reistration</h1>
+          <p>Please fill out the form below to create your account</p>
+        </div>
+      </header>
+      
+      <main className="app-main">
+        <div className="form-container">
+          <h2>Contact Form</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
               <input 
-                type={showPassword ? "text" : "password"} 
-                id="password" 
-                name="password" 
-                value={formData.password}
+                type="text" 
+                id="name" 
+                name="name" 
+                value={formData.name}
                 onChange={handleChange}
-                placeholder="Enter your password"
+                placeholder="Enter your name"
                 required
               />
-              <span 
-                className="password-toggle" 
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? "👁️" : "👁️‍🗨️"}
-              </span>
             </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dob">Date of Birth</label>
+              <input 
+                type="date" 
+                id="dob" 
+                name="dob" 
+                value={formData.dob}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="form-group password-field">
+              <label htmlFor="password">Password</label>
+              <div className="password-input-container">
+                <input 
+                  type={showPassword ? "text" : "password"} 
+                  id="password" 
+                  name="password" 
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  required
+                />
+                <span 
+                  className="password-toggle" 
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? "👁️" : "👁️‍🗨️"}
+                </span>
+              </div>
+            </div>
+            <button type="submit" className="submit-btn">Submit</button>
+          </form>
+        </div>
+      </main>
+      
+      <footer className="app-footer">
+        <div className="footer-content">
+          <p>&copy; {new Date().getFullYear()} User Registration System. All rights reserved.</p>
+          <div className="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
           </div>
-          <button type="submit" className="submit-btn">Submit</button>
-        </form>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 }
