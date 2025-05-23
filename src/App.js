@@ -1,32 +1,6 @@
 import './App.css';
 import { useState } from 'react';
 
-// Intentionally problematic function with ESLint issues
-function processUserData(userData) {
-  var result = [];  // Using var instead of const/let (ESLint prefers const/let)
-  
-  // Unused variable (ESLint warning)
-  let unusedVariable = "This variable is never used";
-  
-  // Missing radix parameter in parseInt (ESLint warning)
-  const userAge = parseInt(userData.age);
-  
-  // Unnecessary else after return (ESLint error)
-  if (userAge > 18) {
-    return "Adult";
-  } else {
-    return "Minor";
-  }
-  
-  // Unreachable code (ESLint error)
-  console.log("This code will never execute");
-  
-  // No-op assignment (ESLint warning)
-  result = result;
-  
-  // Missing return statement (ESLint warning)
-}
-
 function App() {
   const [formData, setFormData] = useState({
     name: '',
