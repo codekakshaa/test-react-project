@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Signup() {
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
