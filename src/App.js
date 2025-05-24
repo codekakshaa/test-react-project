@@ -1,130 +1,91 @@
 import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    dob: '',
-    email: '',
-    password: ''
-  });
-  
-  const [showPassword, setShowPassword] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
+  const handleLogin = (credentials) => {
+    // In a real app, you would validate credentials with a backend
+    console.log('Login attempt with:', credentials);
+    setIsAuthenticated(true);
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Name: ${formData.name}, Phone: ${formData.phone}, Date of Birth: ${formData.dob}, Email: ${formData.email}`);
+  const handleLogout = () => {
+    setIsAuthenticated(false);
   };
 
   return (
-    <div className="App">
-      <header className="app-header">
-        <div className="header-content">
-          <h1>User Reistration</h1>
-          <p>Please fill out the form below to create your account</p>
-        </div>
-      </header>
-      
-      <main className="app-main">
-        <div className="form-container">
-          <h2>Contact Form</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Enter your phone number"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="dob">Date of Birth</label>
-              <input 
-                type="date" 
-                id="dob" 
-                name="dob" 
-                value={formData.dob}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <div className="form-group password-field">
-              <label htmlFor="password">Password</label>
-              <div className="password-input-container">
-                <input 
-                  type={showPassword ? "text" : "password"} 
-                  id="password" 
-                  name="password" 
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  required
-                />
-                <span 
-                  className="password-toggle" 
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPassword ? "👁️" : "👁️‍🗨️"}
-                </span>
-              </div>
-            </div>
-            <button type="submit" className="submit-btn">Submit</button>
-          </form>
-        </div>
-      </main>
-      
-      <footer className="app-footer">
-        <div className="footer-content">
-          <p>&copy; {new Date().getFullYear()} User Registration System. All rights reserved.</p>
-          <div className="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Us</a>
+    <Router>
+      <div className="App">
+        <header className="app-header">
+          <div className="header-content">
+            <h1>User Registration System</h1>
+            <nav className="main-nav">
+              {!isAuthenticated ? (
+                <>
+                  <Link to="/login" className="nav-link">Login</Link>
+                  <Link to="/signup" className="nav-link">Sign Up</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                  <button onClick={handleLogout} className="nav-link logout-btn">Logout</button>
+                </>
+              )}
+            </nav>
           </div>
-        </div>
-      </footer>
-    </div>
+        </header>
+        
+        <main className="app-main">
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} 
+            />
+            <Route 
+              path="/login" 
+              element={
+                isAuthenticated ? 
+                <Navigate to="/dashboard" /> : 
+                <Login onLogin={handleLogin} />
+              } 
+            />
+            <Route 
+              path="/signup" 
+              element={
+                isAuthenticated ? 
+                <Navigate to="/dashboard" /> : 
+                <Signup />
+              } 
+            />
+            <Route 
+              path="/dashboard" 
+              element={
+                isAuthenticated ? 
+                <Dashboard /> : 
+                <Navigate to="/login" />
+              } 
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+        
+        <footer className="app-footer">
+          <div className="footer-content">
+            <p>&copy; {new Date().getFullYear()} User Registration System. All rights reserved.</p>
+            <div className="footer-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Contact Us</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
