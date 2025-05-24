@@ -23,7 +23,7 @@ function App() {
       <div className="App">
         <header className="app-header">
           <div className="header-content">
-            <h1>User Registration System</h1>
+            <h1>Vertex Services</h1>
             <nav className="main-nav">
               {!isAuthenticated ? (
                 <>
@@ -76,7 +76,7 @@ function App() {
         
         <footer className="app-footer">
           <div className="footer-content">
-            <p>&copy; {new Date().getFullYear()} User Registration System. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Vertex Services. All rights reserved.</p>
             <div className="footer-links">
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Service</a>
