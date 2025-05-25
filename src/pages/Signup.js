@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Signup() {
   const [error, setError] = useState(null);
@@ -16,7 +16,6 @@ function Signup() {
   });
   
   const [showPassword, setShowPassword] = useState(false);
-  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -185,7 +184,7 @@ function Signup() {
         <button type="submit" className="submit-btn" disabled={loading}>
           {loading ? "Signing Up..." : "Sign Up"}
         </button>
-        <button type="button" className="cancel-btn" onClick={() => history.goBack()}>Cancel</button>
+        <button type="button" className="cancel-btn" onClick={() => '/login'}>Cancel</button>
         <p className="form-footer">
           Already have an account? <Link to="/login">Login</Link> | <Link to="/forgot-password">Forgot Password?</Link>
         </p>
