@@ -68,7 +68,6 @@ function Signup() {
     try {
       // Simulate a successful submission
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-      setSuccess(true);
       setFormData({
         name: '',
         phone: '',
