@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Signup() {
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,8 +26,35 @@ function Signup() {
     setShowPassword(!showPassword);
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    // Example: Password must be at least 8 characters long
+    return password.length >= 8;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(null);
+    setSuccess(false);
+
+    if (!validateEmail(formData.email)) {
+      setError("Invalid email address.");
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+
+    // Additional validation logic for other fields can be added here
+
+    // Simulate a successful submission
+    setSuccess(true);
     alert(`Name: ${formData.name}, Phone: ${formData.phone}, Date of Birth: ${formData.dob}, Email: ${formData.email}`);
     // In a real app, you would send this data to a backend
   };
@@ -34,6 +62,8 @@ function Signup() {
   return (
     <div className="form-container">
       <h2>Sign Up</h2>
+      {error && <div className="error-message">{error}</div>}
+      {success && <div className="success-message">Signup successful!</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
